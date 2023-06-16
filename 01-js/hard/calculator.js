@@ -18,5 +18,57 @@
 */
 
 class Calculator {}
+class Calculator {
+  constructor() {
+    this.result = 0;
+  }
+  add(number) {
+    this.result += number;
+  }
+  subtract(number) {
+    this.result -= number;
+  }
+  multiply(number) {
+    this.result *= number;
+  }
+  divide(number) {
+    if (number === 0) {
+      throw new Error("Division by zero is not allowed.");
+    }
+    this.result /= number;
+  }
+  clear() {
+    this.result = 0;
+  }
+  getResult() {
+    return this.result;
+  }
+  calculate(expression) {
+    const cleanedExpression = expression.replace(/\s+/g, '');
+    const isValidExpression = /^[\d+\-*/().]+$/.test(cleanedExpression);
+    if (!isValidExpression) {
+      throw new Error("Invalid expression. Only numerical values and arithmetic operators are allowed.");
+    }
+    this.result = eval(cleanedExpression);
+  }
+}
+const calculator = new Calculator();
 
+calculator.add(5);
+console.log(calculator.getResult());
+
+calculator.subtract(2);
+console.log(calculator.getResult()); 
+
+calculator.multiply(4);
+console.log(calculator.getResult());
+
+calculator.divide(3);
+console.log(calculator.getResult());
+
+calculator.clear();
+console.log(calculator.getResult());
+
+calculator.calculate("10 + 2 * (6 - (4 + 1) / 2) + 7");
+console.log(calculator.getResult()); //24
 module.exports = Calculator;
