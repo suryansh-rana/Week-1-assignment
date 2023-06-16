@@ -6,7 +6,16 @@ Try running it for
 3. Sum from 1-1000000000
 Hint - use Date class exposed in JS
 */
-
-function calculateTime(n) {
-    return 0.01;
+function calculateSum(n) {
+  var startTime = new Date();
+  var sum = 0;
+  for (var i = 1; i <= n; i++) {
+    sum += i;
+  }
+  var endTime = new Date();
+  var elapsedTime = (endTime - startTime) / 1000;
+  return elapsedTime;
 }
+console.log("Time for sum from 1 to 100:", calculateSum(100), "milliseconds");
+console.log("Time for sum from 1 to 100000:", calculateSum(100000), "milliseconds");
+console.log("Time for sum from 1 to 1000000000:", calculateSum(1000000000), "milliseconds");
